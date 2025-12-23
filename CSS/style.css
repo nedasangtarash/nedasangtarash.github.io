@@ -1,7 +1,8 @@
-body{
+/* ===== Base ===== */
+body {
   margin:0;
   font-family:'Inter',sans-serif;
-  background:#0e0e11;
+  background:#0E0E11;
   color:white;
   text-align:center;
 }
@@ -20,6 +21,7 @@ body{
   border-radius:50%;
   overflow:hidden;
   position:relative;
+  animation: float 6s ease-in-out infinite;
 }
 
 .hero-circle video{
@@ -32,6 +34,12 @@ body{
   position:absolute;
   bottom:1rem;
   width:100%;
+  text-align:center;
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-15px);}
 }
 
 /* ===== NAV ===== */
@@ -43,19 +51,22 @@ body{
   background:#111;
 }
 
-.panel-menu a{
+.panel-menu a, .nav-btn{
   cursor:pointer;
   text-transform:uppercase;
   font-weight:600;
+  transition:transform 0.3s, color 0.3s;
+}
+
+.nav-btn:hover{
+  color:#f39c12;
+  transform:scale(1.2);
 }
 
 /* ===== PANELS ===== */
-.panel{display:none}
-.panel.active{display:block}
-
-main{
-  padding:2rem 5%;
-}
+.panel{display:none; opacity:0; transform:translateY(20px); transition:all 0.5s;}
+.panel.active{display:block; opacity:1; transform:translateY(0); transition:all 0.5s;}
+main{padding:2rem 5%;}
 
 /* ===== PORTFOLIO ===== */
 .portfolio-menu{
@@ -69,11 +80,18 @@ main{
   background:#222;
   color:white;
   cursor:pointer;
+  transition:all 0.3s;
+}
+.portfolio-menu button:hover{
+  background:#f39c12;
 }
 
+/* ===== PORTFOLIO CARDS ===== */
 .portfolio-container{
   display:flex;
   justify-content:center;
+  flex-wrap:wrap;
+  gap:1.5rem;
 }
 
 .portfolio-section{
@@ -88,6 +106,14 @@ main{
   height:220px;
   background:#1a1a1a;
   position:relative;
+  border-radius:15px;
+  cursor:pointer;
+  overflow:hidden;
+  transition:transform 0.3s;
+}
+
+.project-card:hover{
+  transform:scale(1.05);
 }
 
 .project-card img{
@@ -100,8 +126,17 @@ main{
   position:absolute;
   bottom:0;
   width:100%;
-  background:rgba(0,0,0,.6);
+  background:rgba(0,0,0,0.6);
   padding:.4rem 0;
+  font-weight:600;
+}
+
+.overlay-text{
+  position:absolute;
+  bottom:30px;
+  width:100%;
+  color:rgba(255,255,255,0.7);
+  font-size:0.85rem;
 }
 
 /* ===== WORK ===== */
@@ -109,4 +144,35 @@ main{
   display:flex;
   gap:2rem;
   justify-content:center;
+  flex-wrap:wrap;
+}
+.grid .project-card{
+  height:180px;
+}
+
+/* ===== FULLSCREEN PORTFOLIO ===== */
+.fullscreen{
+  position:fixed;
+  top:0; left:0;
+  width:100vw;
+  height:100vh;
+  background:rgba(0,0,0,0.95);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  cursor:pointer;
+  flex-direction:column;
+}
+.fullscreen img{
+  max-width:90%;
+  max-height:80%;
+  object-fit:contain;
+}
+
+/* ===== Responsive ===== */
+@media(max-width:768px){
+  .panel-menu{flex-direction:column;}
+  .portfolio-container,.grid{flex-direction:column;align-items:center;}
+  .hero-circle{width:240px;height:240px;}
 }
