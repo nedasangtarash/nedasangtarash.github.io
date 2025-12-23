@@ -1,178 +1,172 @@
-/* ===== Base ===== */
-body {
-  margin:0;
-  font-family:'Inter',sans-serif;
-  background:#0E0E11;
-  color:white;
-  text-align:center;
+:root{
+  --bg:#0b0b10;
+  --fg:#ffffff;
+  --accent:#ff3d81;
+  --accent2:#5eead4;
+  --muted:#9ca3af;
 }
 
-/* ===== HERO ===== */
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Inter',sans-serif;
+  background:radial-gradient(circle at top left,#1a1a2e,#0b0b10 60%);
+  color:var(--fg);
+  overflow-x:hidden;
+}
+
+/* ===== Hero ===== */
 .hero{
-  height:50vh;
+  height:60vh;
   display:flex;
   align-items:center;
   justify-content:center;
 }
-
 .hero-circle{
-  width:320px;
-  height:320px;
+  width:360px;
+  height:360px;
   border-radius:50%;
   overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   position:relative;
-  animation: float 6s ease-in-out infinite;
+  animation:float 6s ease-in-out infinite;
+  background:
+    radial-gradient(circle at 30% 30%,var(--accent),transparent 60%),
+    radial-gradient(circle at 70% 70%,var(--accent2),transparent 60%);
 }
-
 .hero-circle video{
   width:100%;
   height:100%;
   object-fit:cover;
+  position:absolute;
+  top:0; left:0;
 }
-
 .hero-text{
   position:absolute;
   bottom:1rem;
-  width:100%;
   text-align:center;
+  z-index:2;
 }
+.hero h1{font-size:2.2rem;font-weight:800}
+.hero p{font-size:0.95rem;color:var(--muted);margin-top:0.8rem}
 
-@keyframes float{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-15px);}
-}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
 
-/* ===== NAV ===== */
-.panel-menu{
+/* ===== Navigation ===== */
+nav{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(11,11,16,0.75);
+  backdrop-filter:blur(10px);
   display:flex;
   justify-content:center;
-  gap:2rem;
-  padding:1.2rem;
-  background:#111;
+  gap:1.2rem;
+  padding:1rem;
 }
-
-.panel-menu a, .nav-btn{
-  cursor:pointer;
-  text-transform:uppercase;
+nav button{
+  width:70px;height:70px;
+  border-radius:50%;
+  border:none;
+  background:#141420;
+  color:white;
   font-weight:600;
-  transition:transform 0.3s, color 0.3s;
+  cursor:pointer;
+  transition:all 0.3s ease;
 }
+nav button:hover{background:var(--accent);transform:scale(1.08)}
 
-.nav-btn:hover{
-  color:#f39c12;
-  transform:scale(1.2);
-}
+/* ===== Panels ===== */
+main{padding:3rem 6%;text-align:center}
+.panel{display:none;opacity:0;transform:translateY(20px);transition:all 0.5s}
+.panel.active{display:block;opacity:1;transform:translateY(0)}
 
-/* ===== PANELS ===== */
-.panel{display:none; opacity:0; transform:translateY(20px); transition:all 0.5s;}
-.panel.active{display:block; opacity:1; transform:translateY(0); transition:all 0.5s;}
-main{padding:2rem 5%;}
+/* ===== About ===== */
+.about-text{max-width:800px;margin:0 auto;line-height:1.7;color:#e5e7eb}
 
-/* ===== PORTFOLIO ===== */
+/* ===== Portfolio ===== */
 .portfolio-menu{
+  display:flex;
+  justify-content:center;
+  gap:1rem;
   margin-bottom:2rem;
 }
-
 .portfolio-menu button{
-  margin:0 .5rem;
-  padding:.5rem 1rem;
+  padding:0.6rem 1.4rem;
+  border-radius:999px;
   border:none;
-  background:#222;
+  background:#1f1f2e;
   color:white;
-  cursor:pointer;
-  transition:all 0.3s;
-}
-.portfolio-menu button:hover{
-  background:#f39c12;
-}
-
-/* ===== PORTFOLIO CARDS ===== */
-.portfolio-container{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:1.5rem;
-}
-
-.portfolio-section{
-  display:flex;
-  gap:1.5rem;
-  flex-wrap:wrap;
-  justify-content:center;
-}
-
-.project-card{
-  width:220px;
-  height:220px;
-  background:#1a1a1a;
-  position:relative;
-  border-radius:15px;
-  cursor:pointer;
-  overflow:hidden;
-  transition:transform 0.3s;
-}
-
-.project-card:hover{
-  transform:scale(1.05);
-}
-
-.project-card img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.overlay-title{
-  position:absolute;
-  bottom:0;
-  width:100%;
-  background:rgba(0,0,0,0.6);
-  padding:.4rem 0;
   font-weight:600;
+  cursor:pointer;
+  transition:background 0.3s;
+}
+.portfolio-menu button:hover{background:var(--accent)}
+
+.portfolio-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:2rem;
+  max-width:900px;
+  margin:0 auto;
 }
 
-.overlay-text{
+/* ===== Circular cards ===== */
+.card{
+  aspect-ratio:1/1;
+  border-radius:50%;
+  background:#161625;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+  transition:transform 0.3s ease;
+}
+.card:hover{transform:scale(1.05)}
+.card span{
   position:absolute;
-  bottom:30px;
-  width:100%;
-  color:rgba(255,255,255,0.7);
-  font-size:0.85rem;
+  bottom:15%;
+  font-weight:700;
+  letter-spacing:0.05em;
 }
+.card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle,var(--accent),transparent 65%);
+  opacity:0;
+  transition:opacity 0.3s;
+}
+.card:hover::before{opacity:0.8}
 
-/* ===== WORK ===== */
-.grid{
+/* ===== Work In Progress ===== */
+.work-grid{
   display:flex;
   gap:2rem;
   justify-content:center;
   flex-wrap:wrap;
 }
-.grid .project-card{
-  height:180px;
+.work-item{
+  width:220px;
+  height:220px;
+  border-radius:30px;
+  background:#1a1a2a;
+  padding:1rem;
 }
+.work-item h3{margin:0.5rem 0}
 
-/* ===== FULLSCREEN PORTFOLIO ===== */
+/* ===== Fullscreen portfolio ===== */
 .fullscreen{
-  position:fixed;
-  top:0; left:0;
-  width:100vw;
-  height:100vh;
+  position:fixed;top:0;left:0;width:100vw;height:100vh;
   background:rgba(0,0,0,0.95);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
-  cursor:pointer;
-  flex-direction:column;
+  display:flex;justify-content:center;align-items:center;flex-direction:column;
+  z-index:9999;cursor:pointer;
 }
-.fullscreen img{
-  max-width:90%;
-  max-height:80%;
-  object-fit:contain;
-}
+.fullscreen img{max-width:90%;max-height:80%;object-fit:contain}
+.fullscreen span{color:rgba(255,255,255,0.8);margin-top:1rem;font-size:1.1rem}
 
 /* ===== Responsive ===== */
-@media(max-width:768px){
-  .panel-menu{flex-direction:column;}
-  .portfolio-container,.grid{flex-direction:column;align-items:center;}
-  .hero-circle{width:240px;height:240px;}
-}
+@media(max-width:600px){.hero-circle{width:280px;height:280px}}
