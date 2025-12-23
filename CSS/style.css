@@ -1,0 +1,42 @@
+:root{
+  --bg:#0b0b10;
+  --fg:#ffffff;
+  --accent:#ff3d81;
+  --accent2:#5eead4;
+  --muted:#9ca3af;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:
+    radial-gradient(circle at top left,#1a1a2e,#0b0b10 60%);
+  color:var(--fg);
+  overflow-x:hidden;
+}
+
+/* ===== Hero ===== */
+.hero{
+  height:60vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.hero-circle{
+  width:360px;
+  height:360px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 30% 30%,var(--accent),transparent 60%),
+    radial-gradient(circle at 70% 70%,var(--accent2),transparent 60%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  animation:float 6s ease-in-out in

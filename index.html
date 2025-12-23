@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Neda Sangtarash — Experimental Animator</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0b0b10;
+  --fg:#ffffff;
+  --accent:#ff3d81;
+  --accent2:#5eead4;
+  --muted:#9ca3af;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Inter',sans-serif;
+  background:radial-gradient(circle at top left,#1a1a2e,#0b0b10 60%);
+  color:var(--fg);
+  overflow-x:hidden;
+}
+
+/* ===== Hero ===== */
+.hero{
+  height:60vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+.hero-circle{
+  width:360px;
+  height:360px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 30% 30%,var(--accent),transparent 60%),
+    radial-gradient(circle at 70% 70%,var(--accent2),transparent 60%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  animation:float 6s ease-in-out infinite;
+}
+.hero h1{
+  font-size:2.2rem;
+  margin:0;
+}
+.hero p{
+  font-size:0.95rem;
+  color:var(--muted);
+  max-width:260px;
+  margin:0.8rem auto 0;
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-15px)}
+}
+
+/* ===== Navigation ===== */
+nav{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(11,11,16,0.7);
+  backdrop-filter:blur(10px);
+  display:flex;
+  justify-content:center;
+  gap:1.2rem;
+  padding:1rem;
+}
+nav button{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  border:none;
+  background:#141420;
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+  transition:all 0.3s;
+}
+nav button:hover{
+  background:var(--accent);
+  transform:scale(1.08);
+}
+
+/* ===== Panels ===== */
+main{
+  padding:3rem 6%;
+  text-align:center;
+}
+.panel{display:none}
+.panel.active{display:block}
+
+/* ===== About ===== */
+.about-text{
+  max-width:800px;
+  margin:0 auto;
+  line-height:1.7;
+  color:#e5e7eb;
+}
+
+/* ===== Portfolio ===== */
+.portfolio-menu{
+  display:flex;
+  justify-content:center;
+  gap:1rem;
+  margin-bottom:2rem;
+}
+.portfolio-menu button{
+  padding:0.6rem 1.2rem;
+  border-radius:999px;
+  border:none;
+  background:#1f1f2e;
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+}
+.portfolio-menu button:hover{
+  background:var(--accent);
+}
+
+.portfolio-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:2rem;
+  max-width:900px;
+  margin:0 auto;
+}
+
+.card{
+  aspect-ratio:1/1;
+  border-radius:50%;
+  background:#161625;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+  transition:transform 0.3s;
+}
+.card:hover{transform:scale(1.05)}
+.card span{
+  position:absolute;
+  bottom:15%;
+  font-weight:700;
+  letter-spacing:0.05em;
+}
+.card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle,var(--accent),transparent 65%);
+  opacity:0;
+  transition:opacity 0.3s;
+}
+.card:hover::before{opacity:0.8}
+
+/* ===== Work ===== */
+.work-grid{
+  display:flex;
+  gap:2rem;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.work-item{
+  width:220px;
+  height:220px;
+  border-radius:30px;
+  background:#1a1a2a;
+  padding:1rem;
+}
+.work-item h3{margin:0.5rem 0}
+
+/* ===== Responsive ===== */
+@media(max-width:600px){
+  .hero-circle{width:280px;height:280px}
+}
+</style>
+</head>
+
+<body>
+
+<header class="hero">
+  <div class="hero-circle">
+    <div>
+      <h1>Neda Sangtarash</h1>
+      <p>Animator & Experimental Artist</p>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <button onclick="showPanel('home')">Home</button>
+  <button onclick="showPanel('about')">About</button>
+  <button onclick="showPanel('portfolio')">Works</button>
+  <button onclick="showPanel('work')">WIP</button>
+</nav>
+
+<main>
+  <!-- Home -->
+  <section id="home" class="panel active">
+    <p class="about-text">
+      Exploring memory, the body, and childhood misunderstandings through experimental animation and moving images.
+    </p>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="panel">
+    <p class="about-text">
+      Neda Sangtarash (b. 2002, Isfahan) is an animator and experimental artist whose work explores memory, the body, and childhood misunderstandings through moving images. She began her artistic practice with storyboard, background and character design, as well as pixel art, and later studied Handicrafts, where she developed an interdisciplinary approach to animation—one grounded in experimentation with materials, form, and non-linear narration.
+      <br><br>
+      In her practice, Sangtarash approaches animation as a space for making the invisible tangible; a site where image replaces language, and movement becomes a tool for returning to forgotten or suppressed layers of experience.
+    </p>
+  </section>
+
+  <!-- Portfolio -->
+  <section id="portfolio" class="panel">
+    <div class="portfolio-menu">
+      <button onclick="setWorks('animation')">Animation Film</button>
+      <button onclick="setWorks('illustration')">Illustration</button>
+      <button onclick="setWorks('handicraft')">Handicraft</button>
+    </div>
+
+    <div class="portfolio-grid" id="portfolioGrid">
+      <!-- dynamic -->
+    </div>
+  </section>
+
+  <!-- Work in Progress -->
+  <section id="work" class="panel">
+    <div class="work-grid">
+      <div class="work-item">
+        <h3>Project A</h3>
+        <p>Experimental animation demo</p>
+      </div>
+      <div class="work-item">
+        <h3>Project B</h3>
+        <p>Material-based moving image</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+function showPanel(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+const works={
+  animation:['Film 01','Film 02','Film 03'],
+  illustration:['Illustration 01','Illustration 02'],
+  handicraft:['Object 01','Object 02']
+};
+
+function setWorks(type){
+  const grid=document.getElementById('portfolioGrid');
+  grid.innerHTML='';
+  works[type].forEach(title=>{
+    const div=document.createElement('div');
+    div.className='card';
+    div.innerHTML=`<span>${title}</span>`;
+    grid.appendChild(div);
+  });
+}
+setWorks('animation');
+</script>
+
+</body>
+</html>
