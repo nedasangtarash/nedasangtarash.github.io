@@ -3,90 +3,117 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Neda Sangtarash — Experimental Animator</title>
+  <title>Neda Sangtarash – Portfolio</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/style.css">
 </head>
 
 <body>
 
-<div class="app-frame">
-
-  <!-- HERO : فقط Home -->
-  <header class="hero" id="heroBlob">
-    <div class="blob">
-      <video src="assets/loop.mp4" autoplay muted loop playsinline></video>
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="hero-circle" id="heroCircle">
+    <video src="assets/loop.mp4" autoplay muted loop playsinline></video>
+    <div class="hero-text">
+      <h1>Neda Sangtarash</h1>
+      <p>Animator & Experimental Artist</p>
     </div>
-  </header>
+  </div>
+</header>
 
-  <!-- NAVIGATION -->
-  <nav>
-    <button onclick="showPanel('home')">Home</button>
-    <button onclick="showPanel('about')">About</button>
-    <button onclick="showPanel('portfolio')">Works</button>
-    <button onclick="showPanel('work')">WIP</button>
-  </nav>
+<!-- ===== NAV ===== -->
+<nav class="panel-menu">
+  <a onclick="showPanel('home')">Home</a>
+  <a onclick="showPanel('about')">About</a>
+  <a onclick="showPanel('portfolio')">Portfolio</a>
+  <a onclick="showPanel('work')">WIP</a>
+</nav>
 
-  <!-- CONTENT -->
-  <main>
+<!-- ===== CONTENT ===== -->
+<main>
 
-    <!-- HOME -->
-    <section id="home" class="panel active">
-      <p class="about-text">
-        Animator and experimental artist exploring memory, the body, and childhood misunderstandings
-        through moving images and material-based animation.
-      </p>
-    </section>
+  <!-- HOME -->
+  <section id="home" class="panel active">
+    <p>
+      Exploring memory, the body, and childhood misunderstandings
+      through experimental animation and moving images.
+    </p>
+  </section>
 
-    <!-- ABOUT -->
-    <section id="about" class="panel">
-      <p class="about-text">
-        Neda Sangtarash (b. 2002, Isfahan) is an animator and experimental artist whose work explores
-        memory, the body, and childhood misunderstandings through moving images.
-        <br><br>
-        She began her artistic practice with storyboard, background and character design, as well as
-        pixel art, and later studied Handicrafts, developing an interdisciplinary approach grounded
-        in experimentation with materials, form, and non-linear narration.
-        <br><br>
-        In her practice, animation becomes a space where image replaces language and movement allows
-        access to suppressed or forgotten layers of experience.
-      </p>
-    </section>
+  <!-- ABOUT -->
+  <section id="about" class="panel">
+    <p>
+      <strong>Neda Sangtarash</strong> (b. 2002, Isfahan) is an animator and experimental artist
+      whose work explores memory, the body, and childhood misunderstandings through moving images.
+      <br><br>
+      She began her artistic practice with storyboard, background and character design, as well as pixel art,
+      and later studied Handicrafts, where she developed an interdisciplinary approach to animation.
+      <br><br>
+      In her practice, animation becomes a space for making the invisible tangible.
+    </p>
+  </section>
 
-    <!-- PORTFOLIO -->
-    <section id="portfolio" class="panel">
+  <!-- PORTFOLIO -->
+  <section id="portfolio" class="panel">
 
-      <div class="portfolio-menu">
-        <button onclick="setWorks('animation')">Animation Film</button>
-        <button onclick="setWorks('illustration')">Illustration</button>
-        <button onclick="setWorks('handicraft')">Handicraft</button>
-      </div>
+    <div class="portfolio-menu">
+      <button onclick="showPortfolio('animation')">Animation Film</button>
+      <button onclick="showPortfolio('illustration')">Illustration</button>
+      <button onclick="showPortfolio('handicraft')">Handicraft</button>
+    </div>
 
-      <div class="portfolio-grid" id="portfolioGrid">
-        <!-- JS fills this -->
-      </div>
+    <div class="portfolio-container">
 
-    </section>
-
-    <!-- WORK IN PROGRESS -->
-    <section id="work" class="panel">
-      <div class="work-grid">
-        <div class="work-item">
-          <h3>Project A</h3>
-          <p>Experimental animation demo</p>
-        </div>
-        <div class="work-item">
-          <h3>Project B</h3>
-          <p>Material & memory based moving image</p>
+      <!-- Animation -->
+      <div class="portfolio-section" id="animation">
+        <div class="project-card">
+          <div class="overlay-title">Animation Film</div>
         </div>
       </div>
-    </section>
 
-  </main>
+      <!-- Illustration -->
+      <div class="portfolio-section" id="illustration" style="display:none;">
+        <div class="project-card">
+          <img src="images/ill1.jpg" alt="">
+          <div class="overlay-title">Illustration</div>
+        </div>
+        <div class="project-card">
+          <img src="images/ill2.jpg" alt="">
+          <div class="overlay-title">Illustration</div>
+        </div>
+        <div class="project-card">
+          <img src="images/ill3.jpg" alt="">
+          <div class="overlay-title">Illustration</div>
+        </div>
+      </div>
 
-</div>
+      <!-- Handicraft -->
+      <div class="portfolio-section" id="handicraft" style="display:none;">
+        <div class="project-card">
+          <div class="overlay-title">Handicraft</div>
+        </div>
+      </div>
 
-<script src="main.js"></script>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work" class="panel">
+    <div class="grid">
+      <div class="project-card">
+        <h3>Project A</h3>
+        <p>Experimental animation demo</p>
+      </div>
+      <div class="project-card">
+        <h3>Project B</h3>
+        <p>Material-based moving image</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="JS/main.js"></script>
 </body>
 </html>
